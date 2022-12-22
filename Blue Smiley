@@ -1,0 +1,58 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QGraphicsEllipseItem, QGraphicsScene
+from PyQt5.QtGui import QBrush, QPen
+from PyQt5.QtCore import Qt
+
+# Create the application and the main window
+app = QApplication(sys.argv)
+window = QWidget()
+window.setWindowTitle('Smiley Face')
+window.setGeometry(100, 100, 400, 400)
+
+# Create a graphics scene and add the smiley face to it
+scene = QGraphicsScene()
+
+# Draw the face
+face = QGraphicsEllipseItem(-100, -100, 200, 200)
+face.setBrush(QBrush(Qt.yellow))
+pen = QPen(Qt.black)
+pen.setWidth(2)
+face.setPen(pen)
+scene.addItem(face)
+
+# Draw the eyes
+left_eye = QGraphicsEllipseItem(-60, -40, 20, 40)
+left_eye.setBrush(QBrush(Qt.white))
+left_eye.setPen(pen)
+scene.addItem(left_eye)
+
+right_eye = QGraphicsEllipseItem(40, -40, 20, 40)
+right_eye.setBrush(QBrush(Qt.white))
+right_eye.setPen(pen)
+scene.addItem(right_eye)
+
+# Draw the pupils
+left_pupil = QGraphicsEllipseItem(-60, -20, 10, 20)
+left_pupil.setBrush(QBrush(Qt.blue))
+left_pupil.setPen(pen)
+scene.addItem(left_pupil)
+
+right_pupil = QGraphicsEllipseItem(50, -20, 10, 20)
+right_pupil.setBrush(QBrush(Qt.blue))
+right_pupil.setPen(pen)
+scene.addItem(right_pupil)
+
+# Draw the mouth
+mouth = QGraphicsEllipseItem(-80, 60, 160, 80, face)
+mouth.setStartAngle(45 * 16)
+mouth.setSpanAngle(270 * 16)
+mouth.setBrush(QBrush(Qt.red))
+mouth.setPen(pen)
+scene.addItem(mouth)
+
+# Set the scene and show the window
+window.setScene(scene)
+window.show()
+
+# Run the application
+sys.exit(app.exec_())
